@@ -1,8 +1,8 @@
-Projeto inicial de um diário de estudos
-Titulo: Diário de Estudos em C++
-Autor: Alef Santos Viana
-Data: 10/10/2026
-Versão: 1.0.0
+# Projeto inicial de um diário de estudos
+# Titulo: Diário de Estudos em C++
+# Autor: Alef Santos Viana
+# Data: 10/10/2026
+# Versão: 1.0.0
 # Diário de Estudos
 
 Programa de terminal em C++ para registrar quanto tempo você estudou em cada matéria.
