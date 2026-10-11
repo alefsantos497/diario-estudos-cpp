@@ -29,11 +29,11 @@ g++ -std=c++17 -Wall -Wextra -o diario main.cpp
 Projeto em desenvolvimento...
 
 
-Version em English
--Initial design of a study diary 
-Title: C++ Study Journal 
-Author: Alef Santos Viana 
-Date: 10/10/2026 Version: 1.0.0 
+Version em English\
+-Initial design of a study diary\ 
+Title: C++ Study Journal\ 
+Author: Alef Santos Viana\ 
+Date: 10/10/2026 Version: 1.0.0\ 
 # Study Diary 
 Terminal program in C++ to record how long you studied in each subject. 
 ## Features 
