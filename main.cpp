@@ -23,7 +23,7 @@ void salvarEstudos(const string& caminho){
     }
     //Escreve os estudos no arquivo
     for(const auto& item : estudos){
-        arquivo << item.second << "h" << ";" << item.first << "\n";
+        arquivo << item.second << ";" << item.first << "\n";
     }
 }
 //Função para carregar os estudos do arquivo
