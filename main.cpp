@@ -2,17 +2,65 @@
 #include <map>
 #include <string>
 #include <limits>
+#include <fstream>
+#include <stdexcept>
 using namespace std;
 //Variáveis globais utilizadas no programa
 map<string, double> estudos;//Mapa para armazenar os estudos
+const string ARQUIVO = "estudos.txt";//Nome do arquivo para armazenar os estudos
 
 void registrarEstudo(const string& estudo, double horas){
     estudos[estudo] += horas;
 }//Função para registrar um estudo
 
+//Função para salvar os estudos em arquivo
+void salvarEstudos(const string& caminho){
+    //ofstream para escrever no arquivo
+    ofstream arquivo(caminho);
+    if(!arquivo.is_open()){
+        cout << "Erro ao salvar o arquivo" << endl;
+        return;
+    }
+    //Escreve os estudos no arquivo
+    for(const auto& item : estudos){
+        arquivo << item.second << ";" << item.first << "\n";
+    }
+}
+//Função para carregar os estudos do arquivo
+void carregarEstudos(const string& caminho){
+    //ifstream para ler do arquivo
+    ifstream arquivo(caminho);
+    if(!arquivo.is_open()){
+        return;
+    }
+    string linha;
+    int numeroLinha = 0;
+    while(getline(arquivo, linha)){
+        numeroLinha++;
+        size_t pos = linha.find(';');
+        if(pos == string::npos){
+            cout << "Linha " << numeroLinha << " ignorada: formato inválido" << endl;
+            continue;
+        }
+        string textoHoras = linha.substr(0, pos);
+        string nome = linha.substr(pos + 1);
+        try{
+            size_t usado = 0;
+            double horas = stod(textoHoras, &usado);
+            if(usado != textoHoras.size() || horas <= 0 || nome.empty()){
+                cout << "Linha " << numeroLinha << " ignorada: dados inválidos" << endl;
+                continue;
+            }
+            registrarEstudo(nome, horas);
+        }catch(const exception&){
+            cout << "Linha " << numeroLinha << " ignorada: horas inválidas" << endl;
+        }
+    }
+}
 
 int main(){
     bool executando = true;//Variável para controlar a execução do programa
+    carregarEstudos(ARQUIVO);//Carrega os estudos do arquivo
 //Loop principal do programa
     while(executando){
         int option = 0;
@@ -71,6 +119,7 @@ int main(){
                         break;
                     }//Se o usuário digitar algo inválido, o programa encerra
                     registrarEstudo(estudo, horas);
+                    salvarEstudos(ARQUIVO);//Salva os estudos em arquivo
                     break;
                 //Case 2: Listar estudos
                 case 2:
