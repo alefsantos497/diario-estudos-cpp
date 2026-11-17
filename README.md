@@ -1,8 +1,8 @@
 # 📓 Diário de Estudos em C++ (C++ Study Journal)
 
 **Autor:** Alef Santos Viana  
-**Data:** 10/10/2026  
-**Versão:** 1.0.0  
+**Data:** 17/11/2026  
+**Versão:** 1.0.1  
 
 > *[Read the English version below](#-english-version)*
 
@@ -51,8 +51,8 @@ Cada linha segue o padrão `<horas>h;<matéria>`:
 # 📓 English Version
 
 **Author:** Alef Santos Viana  
-**Date:** 10/10/2026  
-**Version:** 1.0.0  
+**Date:** 17/11/2026  
+**Version:** 1.0.1  
 
 A terminal program written in C++ to log and track how much time you spent studying each subject.
 
