@@ -2,13 +2,30 @@
 #include <map>
 #include <string>
 #include <limits>
+#include <fstream>
+#include <stdexcept>
 using namespace std;
 //Variáveis globais utilizadas no programa
 map<string, double> estudos;//Mapa para armazenar os estudos
+const string ARQUIVO = "estudos.txt";//Nome do arquivo para armazenar os estudos
 
 void registrarEstudo(const string& estudo, double horas){
     estudos[estudo] += horas;
 }//Função para registrar um estudo
+
+//Função para salvar os estudos em arquivo
+void salvarEstudos(const string& caminho){
+    //ofstream para escrever no arquivo
+    ofstream arquivo(caminho);
+    if(!arquivo.is_open()){
+        cout << "Erro ao salvar o arquivo" << endl;
+        return;
+    }
+    //Escreve os estudos no arquivo
+    for(const auto& item : estudos){
+        arquivo << item.second << "h" << ";" << item.first << "\n";
+    }
+}
 
 
 int main(){
@@ -71,6 +88,7 @@ int main(){
                         break;
                     }//Se o usuário digitar algo inválido, o programa encerra
                     registrarEstudo(estudo, horas);
+                    salvarEstudos(ARQUIVO);//Salva os estudos em arquivo
                     break;
                 //Case 2: Listar estudos
                 case 2:
